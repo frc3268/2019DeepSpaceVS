@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
+import edu.wpi.cscore.VideoSource.ConnectionStrategy;
 //import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.*;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -39,6 +42,10 @@ public class Robot extends TimedRobot {
 	public static LiftSubSystem lift = new LiftSubSystem();
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	UsbCamera camera1;
+	UsbCamera camera2;
+	VideoSink server;
+	boolean prevTrigger = false;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -49,11 +56,14 @@ public class Robot extends TimedRobot {
 		m_chooser.setDefaultOption("Auto",  new ExampleCommand()); 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		CameraServer.getInstance().startAutomaticCapture(0);
-		CameraServer.getInstance().startAutomaticCapture(1);
 		lift.SetCompressor(0);
 		lift.ExtendPiston(0);
 		lift.ExtendPiston(1);
+		camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+		camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+		server = CameraServer.getInstance().addSwitchedCamera("switched camera");
+		camera1.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+		camera2.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
 	}
 
 	/**
@@ -124,18 +134,14 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		//	If the second button on the controller is pressed, swap the main camera
-		// if(OI.rightStick.getRawButton(2))
-		// {
-		// 	// if(CameraServer.getInstance().getServer().getSource() == FrontCam)
-		// 	// {
-		// 	// 	CameraServer.getInstance().getServer().setSource(BackCam);
-		// 	// }
-		// 	// else if(CameraServer.getInstance().getServer().getSource() == BackCam)
-		// 	// {
-		// 	// 	CameraServer.getInstance().getServer().setSource(FrontCam);
-		// 	// }
-		// }
+		if (OI.rightStick.getRawButton(2) && !prevTrigger) {
+			System.out.println("Setting camera 2");
+			server.setSource(camera2);
+		  } else if (!OI.rightStick.getRawButton(2) && prevTrigger) {
+			System.out.println("Setting camera 1");
+			server.setSource(camera1);
+		  }
+		  prevTrigger = OI.rightStick.getRawButton(2)	;
 	}
 
 	/**
