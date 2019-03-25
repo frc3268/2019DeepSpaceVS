@@ -8,14 +8,14 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * An example command.  You can replace me with your own command.
  */
 public class ReverseHatchCommand extends Command {
+
+
 	public ReverseHatchCommand() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.hatch);

@@ -35,6 +35,7 @@ public class LowerFrontCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		//	"Reverse" the front pistons, because the wiring of the channels were reversed, reversing is actually extending
 		Robot.lift.ReversePiston(0);
 		finished = true;
 	}

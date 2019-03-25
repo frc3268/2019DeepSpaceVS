@@ -22,6 +22,7 @@ public class BallShootingSubSystem extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public BallShootingSubSystem() {
+		//	Initialize the motor
 		BallShootingMotor = new Talon(RobotMap.PWM_ballShootingMotor);
 	}
 	public void SetSpeed(double speed) {

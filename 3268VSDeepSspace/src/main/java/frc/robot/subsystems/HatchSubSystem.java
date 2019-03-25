@@ -23,8 +23,7 @@ public class HatchSubSystem extends Subsystem {
 	
 	public HatchSubSystem() {
 		compressor = new Compressor();
-
-		
+		//	Initialize the double solenoid, forward and reverse channels
 		piston = new DoubleSolenoid(1, 0);
 	}
 	
@@ -38,15 +37,15 @@ public class HatchSubSystem extends Subsystem {
 	}
 	
 	public void extendPiston() {
-		piston.set(DoubleSolenoid.Value.kForward);
+		piston.set(DoubleSolenoid.Value.kForward);	//	Extend piston
 	}
 	
 	public void reversePiston() {
-		piston.set(DoubleSolenoid.Value.kReverse);
+		piston.set(DoubleSolenoid.Value.kReverse);	//	Retract piston
 	}
 	
 	public void stopPiston() {
-		piston.set(DoubleSolenoid.Value.kOff);
+		piston.set(DoubleSolenoid.Value.kOff);	//	Stop piston
 	}
 	
 	public void initDefaultCommand() {

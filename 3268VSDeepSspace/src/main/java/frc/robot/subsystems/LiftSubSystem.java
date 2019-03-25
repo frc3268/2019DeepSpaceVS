@@ -25,6 +25,7 @@ public class LiftSubSystem extends Subsystem {
 	// here. Call these from Commands.
 	public LiftSubSystem() {
 		c = new Compressor();
+		//	Initialize pistons, forward & reverse channels
 		frontPiston  = new DoubleSolenoid (3, 2);
 		backPiston = new DoubleSolenoid(5, 4);
 
