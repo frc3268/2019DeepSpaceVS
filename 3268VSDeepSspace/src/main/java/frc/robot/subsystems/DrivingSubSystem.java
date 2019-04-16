@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
+//import edu.wpi.first.wpilibj.TimedRobot;
 /**
  * The motors which drive the robot, and their methods of control.
  */
@@ -26,7 +26,7 @@ public class DrivingSubSystem extends Subsystem {
 	Talon driveRightBack;
 	SpeedControllerGroup driveLeft;
 	SpeedControllerGroup driveRight;
-	DifferentialDrive drive;
+	MecanumDrive drive;
 	public boolean invert = false;	//	Tracker to track the current state of whether or not the robot is inverted or not.
 
 	// Put methods for controlling this subsystem
@@ -44,7 +44,7 @@ public class DrivingSubSystem extends Subsystem {
 		driveLeft.setInverted(true);
 		driveRight.setInverted(true);
 		//	Create a drive to allow use of the driving functions
-		drive = new DifferentialDrive(driveLeft, driveRight);
+		drive = new MecanumDrive(driveLeftFront, driveLeftBack,driveRightFront,driveRightBack);
 	}
 	public void SwapControls()
 	{
@@ -66,14 +66,13 @@ public class DrivingSubSystem extends Subsystem {
 			driveRight.setInverted(true);	
 		}
 		//	Drive using the 1st axis on the joystick (Y axis)
-		drive.arcadeDrive(-joy.getRawAxis(1) * 0.75, 	
-						-joy.getRawAxis(0) * 0.75);
+		drive.driveCartesian(joy.getX(), joy.getY(), joy.getZ());
 
 
 	}
 	//	Variant of tankDrive for auto command
 	public void tankDrive(double xSpeed) {	
-		drive.arcadeDrive(xSpeed, 0);
+		//drive.arcadeDrive(xSpeed, 0);
 	}
 	public void tankDriveInv(Joystick joy) {	
 	}

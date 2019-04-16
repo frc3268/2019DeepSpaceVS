@@ -33,12 +33,12 @@ public class ClimbAutoComand extends Command {
     t.start();
     Robot.lift.ReversePiston(0);
     Robot.driveTrain.tankDrive(0.5);
-    t.delay(0.5);
+   // t.delay(0.5);
     Robot.lift.ExtendPiston(0);
     Robot.lift.ReversePiston(1);
-    t.delay(0.5);
+    //t.delay(0.5);
     Robot.lift.ExtendPiston(1);
-    t.delay(1);
+   // t.delay(1);
     Robot.driveTrain.tankDrive(0.5);
   }
 
