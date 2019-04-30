@@ -21,7 +21,7 @@ import frc.robot.subsystems.HatchSubSystem;
 import frc.robot.subsystems.LiftSubSystem;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.BallIntakeSubSystem;
-import frc.robot.subsystems.BallShootingSubSystem;
+//import frc.robot.subsystems.BallShootingSubSystem;
 
 
 /**
@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
 	public static DrivingSubSystem driveTrain = new DrivingSubSystem();
 	public static OI m_oi;
 	public static BallIntakeSubSystem ballIntake = new BallIntakeSubSystem();
-	public static BallShootingSubSystem ballShooting = new BallShootingSubSystem();
+//	public static BallShootingSubSystem ballShooting = new BallShootingSubSystem();
 	public static HatchSubSystem hatch = new HatchSubSystem();
 	public static LiftSubSystem lift = new LiftSubSystem();
 	Command m_autonomousCommand;

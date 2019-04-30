@@ -68,17 +68,6 @@ public class OI {
 
 		SwapButton.whenPressed(new SwapControlsCommand());
 		
-		BallIntakeButton.whenPressed(new BallIntakeCommand());
-		BallIntakeButton.whenReleased(new StopBallCommand(0));
-		
-		BallIntakeReverseButton.whenPressed(new ReverseBallIntakeCommand());
-		BallIntakeReverseButton.whenReleased(new StopBallCommand(0));
-
-		BallShootingButton.whenPressed(new BallShootingCommand());
-		BallShootingButton.whenReleased(new StopBallCommand(1));
-		
-		BallShootingReverseButton.whenPressed(new ReverseBallShootingCommand());
-		BallShootingReverseButton.whenReleased(new StopBallCommand(1));
 
 		HatchButton.whenPressed(new ExtendHatchCommand());
 		HatchButton.whenReleased(new ReverseHatchCommand());

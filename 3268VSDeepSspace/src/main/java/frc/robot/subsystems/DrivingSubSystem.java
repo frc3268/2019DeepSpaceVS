@@ -41,8 +41,8 @@ public class DrivingSubSystem extends Subsystem {
 		driveLeft = new SpeedControllerGroup(driveLeftFront, driveLeftBack);
 		driveRight = new SpeedControllerGroup(driveRightFront, driveRightBack);
 		//	We want driving to be inverted
-		driveLeft.setInverted(true);
-		driveRight.setInverted(true);
+	//	driveLeft.setInverted(true);
+	//	driveRight.setInverted(true);
 		//	Create a drive to allow use of the driving functions
 		drive = new MecanumDrive(driveLeftFront, driveLeftBack,driveRightFront,driveRightBack);
 	}
@@ -54,18 +54,18 @@ public class DrivingSubSystem extends Subsystem {
 		
 	}
 	public void tankDrive(Joystick joy) {	
-		//	Invert or revert the controls, depending on wheter or not we need to do so
-		if( invert == true )
-		{
-			driveLeft.setInverted(false);
-			driveRight.setInverted(false);
-		}
-		else
-		{
-			driveLeft.setInverted(true);
-			driveRight.setInverted(true);	
-		}
-		//	Drive using the 1st axis on the joystick (Y axis)
+		// //	Invert or revert the controls, depending on wheter or not we need to do so
+		// if( invert == true )
+		// {
+		// 	driveLeft.setInverted(false);
+		// 	driveRight.setInverted(false);
+		// }
+		// else
+		// {
+		// 	driveLeft.setInverted(true);
+		// 	driveRight.setInverted(true);	
+		// }
+		// //	Drive using the 1st axis on the joystick (Y axis)
 		drive.driveCartesian(joy.getX(), joy.getY(), joy.getZ());
 
 
