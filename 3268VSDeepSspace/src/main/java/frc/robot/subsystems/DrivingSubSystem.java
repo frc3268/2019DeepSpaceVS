@@ -40,6 +40,7 @@ public class DrivingSubSystem extends Subsystem {
 		//	Create speed controller groups for easier management
 		driveLeft = new SpeedControllerGroup(driveLeftFront, driveLeftBack);
 		driveRight = new SpeedControllerGroup(driveRightFront, driveRightBack);
+		
 		//	We want driving to be inverted
 	//	driveLeft.setInverted(true);
 	//	driveRight.setInverted(true);
@@ -58,7 +59,7 @@ public class DrivingSubSystem extends Subsystem {
 		// if( invert == true )
 		// {
 		// 	driveLeft.setInverted(false);
-		// 	driveRight.setInverted(false);
+		// 	driveRight.setInverted(false)/;
 		// }
 		// else
 		// {
@@ -66,9 +67,7 @@ public class DrivingSubSystem extends Subsystem {
 		// 	driveRight.setInverted(true);	
 		// }
 		// //	Drive using the 1st axis on the joystick (Y axis)
-		drive.driveCartesian(joy.getX(), joy.getY(), joy.getZ());
-
-
+		drive.driveCartesian(-joy.getX() * 0.5, joy.getY()*0.5, -joy.getZ()*0.5	);
 	}
 	//	Variant of tankDrive for auto command
 	public void tankDrive(double xSpeed) {	
