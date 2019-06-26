@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 //import edu.wpi.first.wpilibj.TimedRobot;
 /**
  * The motors which drive the robot, and their methods of control.
@@ -26,7 +26,7 @@ public class DrivingSubSystem extends Subsystem {
 	Talon driveRightBack;
 	SpeedControllerGroup driveLeft;
 	SpeedControllerGroup driveRight;
-	MecanumDrive drive;
+	DifferentialDrive drive;
 	public boolean invert = false;	//	Tracker to track the current state of whether or not the robot is inverted or not.
 
 	// Put methods for controlling this subsystem
@@ -38,18 +38,9 @@ public class DrivingSubSystem extends Subsystem {
 		driveRightBack = new Talon(RobotMap.PWM_driveRightBack);
 		driveLeft = new SpeedControllerGroup(driveLeftFront, driveLeftBack);
 		driveRight = new SpeedControllerGroup(driveRightFront, driveRightBack);
-<<<<<<< HEAD
-		
-		//	We want driving to be inverted
-	//	driveLeft.setInverted(true);
-	//	driveRight.setInverted(true);
-		//	Create a drive to allow use of the driving functions
-		drive = new MecanumDrive(driveLeftFront, driveLeftBack,driveRightFront,driveRightBack);
-=======
 		driveLeft.setInverted(true);
 		driveRight.setInverted(true);
 		drive = new DifferentialDrive(driveLeft, driveRight);
->>>>>>> parent of 5693ae1... Commented code
 	}
 	public void SwapControls()
 	{
@@ -58,26 +49,6 @@ public class DrivingSubSystem extends Subsystem {
 		
 	}
 	public void tankDrive(Joystick joy) {	
-<<<<<<< HEAD
-		// //	Invert or revert the controls, depending on wheter or not we need to do so
-		// if( invert == true )
-		// {
-		// 	driveLeft.setInverted(false);
-		// 	driveRight.setInverted(false)/;
-		// }
-		// else
-		// {
-		// 	driveLeft.setInverted(true);
-		// 	driveRight.setInverted(true);	
-		// }
-		// //	Drive using the 1st axis on the joystick (Y axis)
-		drive.driveCartesian(-joy.getX() * 0.5, joy.getY()*0.5, -joy.getZ()*0.5	);
-	}
-	//	Variant of tankDrive for auto command
-	public void tankDrive(double xSpeed) {	
-		//drive.arcadeDrive(xSpeed, 0);
-	}
-=======
 		if( invert == true )
 		{
 			driveLeft.setInverted(false);
@@ -93,10 +64,11 @@ public class DrivingSubSystem extends Subsystem {
 
 
 	}
->>>>>>> parent of 5693ae1... Commented code
 	public void tankDriveInv(Joystick joy) {	
 	}
-
+	public void tankDrive(double xSpeed) {	
+		drive.arcadeDrive(xSpeed, 0);
+	}
 	/**
 	 * Tank drive using individual joystick axes.
 	 *
