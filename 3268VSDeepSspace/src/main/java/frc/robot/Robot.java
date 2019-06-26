@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import edu.wpi.cscore.UsbCamera;
 //import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.*;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -32,8 +31,6 @@ import frc.robot.subsystems.BallIntakeSubSystem;
  * project.
  */
 public class Robot extends TimedRobot {
-
-	//	Declare all subsystems in here to allow their use in commands
 	public static DrivingSubSystem driveTrain = new DrivingSubSystem();
 	public static OI m_oi;
 	public static BallIntakeSubSystem ballIntake = new BallIntakeSubSystem();
@@ -49,22 +46,11 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		//	Adds in autonomous capabilities
 		m_chooser.setDefaultOption("Auto",  new ExampleCommand()); 
-		//	Use this to add each auto command to the choossere
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-
-		//	Initialize cameras to allow display on the smart dashboard
-		UsbCamera cam1 = CameraServer.getInstance().startAutomaticCapture(0);
-		cam1.setFPS(30);
-		cam1.setResolution(128, 248);
-		cam1.setBrightness(50);
-		UsbCamera cam2 = CameraServer.getInstance().startAutomaticCapture(1);
-		cam2.setFPS(30);
-		cam2.setResolution(128, 248);
-		cam2.setBrightness(50);
-
+		CameraServer.getInstance().startAutomaticCapture(0);
+		CameraServer.getInstance().startAutomaticCapture(1);
 		lift.SetCompressor(0);
 		lift.ExtendPiston(0);
 		lift.ExtendPiston(1);

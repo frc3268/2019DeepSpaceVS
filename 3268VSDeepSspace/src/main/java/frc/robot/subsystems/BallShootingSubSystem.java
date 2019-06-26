@@ -7,48 +7,26 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import frc.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.Talon;;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class HatchSubSystem extends Subsystem {
+public class BallShootingSubSystem extends Subsystem {
+	Talon BallShootingMotor;
+	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-
-	Compressor compressor;
-	DoubleSolenoid piston;
-	
-	public HatchSubSystem() {
-		compressor = new Compressor();
-
-		
-		piston = new DoubleSolenoid(1, 0);
+	public BallShootingSubSystem() {
+		BallShootingMotor = new Talon(RobotMap.PWM_ballShootingMotor);
 	}
-	
-	public void setCompressor(int type) {
-		if(type == 0) {
-			compressor.start();
-		}
-		else {
-			compressor.stop();
-		}
+	public void SetSpeed(double speed) {
+		BallShootingMotor.set(speed);
 	}
-	
-	public void extendPiston() {
-		piston.set(DoubleSolenoid.Value.kForward);
-	}
-	
-	public void reversePiston() {
-		piston.set(DoubleSolenoid.Value.kReverse);
-	}
-	
-	public void stopPiston() {
-		piston.set(DoubleSolenoid.Value.kOff);
-	}
-	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());

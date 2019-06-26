@@ -32,29 +32,33 @@ public class DrivingSubSystem extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public DrivingSubSystem() {
-		//	Initialize the 4 motors needed for driving
 		driveLeftFront = new Talon(RobotMap.PWM_driveLeftFront);
 		driveLeftBack = new Talon(RobotMap.PWM_driveLeftBack);
 		driveRightFront = new Talon(RobotMap.PWM_driveRightFront);
 		driveRightBack = new Talon(RobotMap.PWM_driveRightBack);
-		//	Create speed controller groups for easier management
 		driveLeft = new SpeedControllerGroup(driveLeftFront, driveLeftBack);
 		driveRight = new SpeedControllerGroup(driveRightFront, driveRightBack);
+<<<<<<< HEAD
 		
 		//	We want driving to be inverted
 	//	driveLeft.setInverted(true);
 	//	driveRight.setInverted(true);
 		//	Create a drive to allow use of the driving functions
 		drive = new MecanumDrive(driveLeftFront, driveLeftBack,driveRightFront,driveRightBack);
+=======
+		driveLeft.setInverted(true);
+		driveRight.setInverted(true);
+		drive = new DifferentialDrive(driveLeft, driveRight);
+>>>>>>> parent of 5693ae1... Commented code
 	}
 	public void SwapControls()
 	{
-		//	DEPRECATED, NOT IN USE
 		driveLeft.setInverted(!(driveLeft.getInverted()));
 		driveRight.setInverted(!(driveRight.getInverted()));
 		
 	}
 	public void tankDrive(Joystick joy) {	
+<<<<<<< HEAD
 		// //	Invert or revert the controls, depending on wheter or not we need to do so
 		// if( invert == true )
 		// {
@@ -73,6 +77,23 @@ public class DrivingSubSystem extends Subsystem {
 	public void tankDrive(double xSpeed) {	
 		//drive.arcadeDrive(xSpeed, 0);
 	}
+=======
+		if( invert == true )
+		{
+			driveLeft.setInverted(false);
+			driveRight.setInverted(false);
+		}
+		else
+		{
+			driveLeft.setInverted(true);
+			driveRight.setInverted(true);	
+		}
+		drive.arcadeDrive(-joy.getRawAxis(1) * 0.75, 	
+						-joy.getRawAxis(0) * 0.75);
+
+
+	}
+>>>>>>> parent of 5693ae1... Commented code
 	public void tankDriveInv(Joystick joy) {	
 	}
 
